@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require("body-parser");
 const userRoutes = require('./routes/user');
+const fetchRoutes = require('./routes/fetch');
 
 const connectionString = process.env.ATLAS_URI
 
@@ -50,5 +51,6 @@ app.get("/", function (req, res) {
 })
 
 app.use('', userRoutes);
+app.use('/fetch', fetchRoutes);
 
 module.exports = app;

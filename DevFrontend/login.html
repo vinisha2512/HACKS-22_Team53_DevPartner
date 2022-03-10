@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <title>DEVluvP</title>
+
+    <link rel="stylesheet" href="Home.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+        background-color: #181b20;
+      }
+      .container {
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        color: white;
+      }
+
+      img {
+        height: 150px;
+        width: 300px;
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500;600;700;800;900&display=swap");
+      * {
+        font-family: "Raleway", sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+      .btn-group button {
+        width: 200px;
+        height: 60px;
+        border-radius: 30px;
+        border: none;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        font-size: 25px;
+        background-color: #19a5ffff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row logo">
+        <img src="logo1.png" alt="" />
+      </div>
+    </div>
+    <div class="container text-center mt-5">
+      <div class="row">
+        <h4>Developer world is looking for you</h4>
+        <h1>Be Found</h1>
+      </div>
+    </div>
+
+    <div class="container text-center mt-5">
+      <div class="row">
+        <div class="btn-group">
+          <button
+            id="login"
+            onclick=""
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Login
+          </button>
+          <button
+            id="signup"
+            onclick=""
+            type="submit"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal1"
+          >
+            Sign-Up
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">LOGIN</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control shadow-none"
+                  id="exampleInput"
+                  placeholder="name@example.com"
+                  onkeyup="echeck();"
+                  name="email"
+                  required
+                />
+                <div id="emailHelp" class="form-text">
+                  We'll never share your email with anyone else.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control shadow-none"
+                  id="exampleInputPassword1"
+                  placeholder="Password"
+                  onkeyup="passcheck();"
+                  name="password"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">LOGIN</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+          <div class="card" style="width: 100%">
+            <div class="row g-0">
+              <div class="col-12" id="col-login">
+                <div class="card-body">
+                  <h1 class="card-title">Signup</h1>
+                  <form id="loginform" method="post">
+                    <div class="first" id="1">
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control shadow-none"
+                          id="floatingInputName"
+                          placeholder="Rahul Sharma"
+                          name="name"
+                          required
+                        />
+                        <label for="floatingInputName" id="labelname"
+                          >Enter Name</label
+                        >
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="text"
+                          class="form-control shadow-none"
+                          id="floatingInputAge"
+                          placeholder="Rahul Sharma"
+                          name="name"
+                          required
+                        />
+                        <label for="floatingInputAge" id="labelname"
+                          >Age</label
+                        >
+                      </div>
+
+                      <div class="mt-5">
+                        <label for="floatingInputName" id="labelname"
+                          >Gender
+                        </label>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="inlineRadioOptions"
+                            id="inlineRadio1"
+                            value="option1"
+                          />
+                          <label class="form-check-label" for="inlineRadio1"
+                            >Male</label
+                          >
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="inlineRadioOptions"
+                            id="inlineRadio2"
+                            value="option2"
+                          />
+                          <label class="form-check-label" for="inlineRadio2"
+                            >Female</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        <input
+                          type="email"
+                          class="form-control shadow-none"
+                          id="floatingInput"
+                          placeholder="name@example.com"
+                          onkeyup="echeck();"
+                          name="email"
+                          required
+                        />
+                        <label for="floatingInput" id="labelemail"
+                          >Enter Email Id
+                        </label>
+                        <span id="emmessage"></span>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-floating">
+                            <input
+                              type="password"
+                              class="form-control shadow-none"
+                              id="floatingPassword"
+                              placeholder="Password"
+                              onkeyup="passcheck();"
+                              name="password"
+                              required
+                            />
+                            <label for="floatingPassword" id="labelpassword"
+                              >Set Password</label
+                            >
+                            <span id="passmessage"></span>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-floating">
+                            <input
+                              type="password"
+                              class="form-control shadow-none"
+                              id="floatingCPassword"
+                              placeholder="Confirm Password"
+                              onkeyup="check();"
+                              required
+                            />
+                            <label for="floatingCPassword" id="labelcpassword"
+                              >Confirm Password</label
+                            >
+                            <span id="message"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn"
+                        onclick="enablephone();"
+                        id="buttonNext"
+                        disabled
+                      >
+                        Next
+                      </button>
+                    </div>
+                    <div class="second" id="2">
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">Resume</label>
+                        <input
+                          class="form-control"
+                          type="file"
+                          accept="application/pdf"
+                          id="formFile"
+                          required
+                        />
+                      </div>
+                      <div class="form-floating mb-3">
+                        <textarea
+                          class="form-control"
+                          placeholder="Leave a comment here"
+                          id="floatingTextarea2"
+                          style="height: 100px"
+                          required
+                        ></textarea>
+                        <label for="floatingTextarea2">Bio</label>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        <input
+                          class="form-control shadow-none"
+                          type="text"
+                          id="inputGitLink"
+                          placeholder="Github Link"
+                          aria-label="default input example"
+                          required
+                        />
+                        <label for="floatingInputName" id="labelname"
+                          >Github Link</label
+                        >
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        <input
+                          class="form-control shadow-none"
+                          type="text"
+                          id="inputLink"
+                          placeholder="Linkedin Link"
+                          aria-label="default input example"
+                          required
+                        />
+                        <label for="floatingInputName" id="labelname"
+                          >Linkedin Link</label
+                        >
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        <input
+                          type="tel"
+                          class="form-control shadow-none"
+                          id="floatingPhone"
+                          placeholder="9925159827"
+                          pattern="[789][0-9]{9}"
+                          max-length="10"
+                          min-length="10"
+                          onkeyup="pcheck();"
+                          name="phonenumber"
+                          required
+                        />
+                        <label for="floatingPhone" id="labelno"
+                          >Enter Phone Number</label
+                        >
+                        <span id="pmessage"></span>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="number"
+                          class="form-control shadow-none"
+                          id="floatingOTP"
+                          placeholder="456273"
+                          pattern="[0-9]{6}"
+                          max-length="6"
+                          min-length="6"
+                          onkeyup="otpcheck();"
+                          required
+                        />
+                        <label for="floatingOTP" id="labelotp">OTP</label>
+                        <span id="otpmessage"></span>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn"
+                        onclick="prev();"
+                        id="buttonPrev"
+                      >
+                        Previous
+                      </button>
+                      <button
+                        type="button"
+                        class="btn"
+                        onclick="sendOTP();"
+                        id="buttonOTP"
+                      >
+                        Send OTP
+                      </button>
+                      <button type="submit" class="btn" id="button1" disabled>
+                        SignUp
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var formtest = document.querySelectorAll("form")[1];
+        formtest.addEventListener("submit", (e) => {
+        e.preventDefault();
+            var img = document.getElementById("formFile").files[0];
+            var filename = document.getElementById("formFile").files[0].name;
+
+            var name = document.getElementById("floatingInputName").value;
+            var age = document.getElementById("floatingInputAge").value;
+            var email = document.getElementById("floatingInput").value;
+            var pwd = document.getElementById("floatingPassword").value;
+            var bio = document.getElementById("floatingTextarea2").value;
+            var phone = document.getElementById("floatingPhone").value;
+            var gender = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
+            var gitlink = document.getElementById('inputGitLink').value;
+            var link = document.getElementById('inputLink').value;
+            const data = new FormData();
+            data.append("name", name);
+            data.append("age", age);
+            data.append("email", email);
+            data.append("password", pwd);
+            data.append("bio", bio);
+            data.append("phoneNo", phone);
+            data.append("filename", filename);
+            data.append("image", img, filename);
+            data.append("gender", gender);
+            data.append("gitlink", gitlink);
+            data.append("link", link);
+
+            axios
+            .post("http://localhost:8000/signup", data, {})
+            .then((response) => {
+                console.log(response.data);
+                console.log("huaaaa")
+                document.cookie =
+                "authtoken=" +
+                response.data.token +
+                "; path=/";
+                console.log(document.cookie);
+                window.location.href = "/dashboard";
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+            var x = document.getElementById("snackbar");
+            x.innerHTML = err.response.data.message;
+            // console.log(err.response.data.message)
+            // Add the "show" class to DIV
+            x.className = "show";
+            // After 7.5 seconds, remove the show class from DIV
+            setTimeout(function () {
+              x.className = x.className.replace("show", "");
+            }, 7500);
+            });
+        });
+
+
+        var loginForm = document.querySelectorAll("form")[0];
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            var email = document.getElementById("exampleInput").value;
+            var pwd = document.getElementById("exampleInputPassword1").value;
+
+            data = {"email": email, "password": pwd}
+            axios({
+                method: "post",
+                url: "http://localhost:8000/login",
+                data: data,
+            })
+          .then(async (res) => {
+            console.log()
+            document.cookie =
+              "authtoken=" +
+              res.data.token +
+              "; path=/";
+            window.location.href = "/dashboard.html";
+          })
+          .catch((err) => {
+            console.log(err.response);
+            var x = document.getElementById("snackbar");
+            x.innerHTML = err.response.data.message;
+            // console.log(err.response.data.message)
+            // Add the "show" class to DIV
+            x.className = "show";
+            // After 7.5 seconds, remove the show class from DIV
+            setTimeout(function () {
+              x.className = x.className.replace("show", "");
+            }, 7500);
+          });
+      });
+  </script>
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="ModalFunc.js"></script>
+  </body>
+</html>

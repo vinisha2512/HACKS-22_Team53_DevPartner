@@ -3,9 +3,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+var fs = require("fs");
+var path = require("path");
+const { request } = require("http");  
 
 exports.signup = (req, res, next) => {
-  console.log(req.body)
+  // console.log(req.body)
   User.find({ email: req.body.email })
     .exec()
     .then(user => {
@@ -24,9 +27,22 @@ exports.signup = (req, res, next) => {
               _id: new mongoose.Types.ObjectId(),
               email: req.body.email,
               password: hash,
-              firstName: req.body.fname,
-              lastName: req.body.lname,
-              phoneNo: req.body.phoneNo
+              age: req.body.age,
+              name: req.body.name,
+              phoneNo: req.body.phoneNo,
+              resume: {
+                Name: req.body.filename,
+                pdf: {
+                  data: fs.readFileSync(
+                    path.join(__dirname, "../" + "uploads" + "/" + req.body.filename)
+                  ),
+                  contentType: "application/pdf",
+                },
+              },
+              bio: req.body.bio,
+              gender: req.body.gender,
+              gitlink: req.body.gitlink,
+              link: req.body.link
             });
             user
               .save()
@@ -41,7 +57,6 @@ exports.signup = (req, res, next) => {
                     expiresIn: "1h"
                   }
                 );
-                console.log(result);
                 res.status(201).json({
                   message: "User created",
                   token: token
@@ -86,21 +101,10 @@ exports.login = (req, res, next) => {
             expiresIn: "1h"
           }
         );
-        console.log("user_id" + user[0]._id)
-        parking_id = user[0].parking_id
-        console.log(parking_id)
-        if (parking_id) {
-          type = "PARKING"
-          console.log("parking")
-        }
-        else {
-          type = "USER"
-          console.log("user")
-        }
+        
         return res.status(200).json({
           message: "Auth successful",
-          token: token,
-          type: type
+          token: token
         });
       }
       //password does not match
@@ -185,17 +189,28 @@ function generateOTP() {
 
 // test authentication
 exports.test = (req, res) => {
-  const auth = (req.headers.authorization.split(" ")[1]).split(';')[0];
-  const dec = jwt.decode(auth);
-  console.log("header", dec, auth);
+  cookies = req.headers.authorization.slice(7,)
+  console.log(cookies)
+  cook = cookies.split("; ");
+  const substring = "authtoken=";
+
+  const match = cook.find((element) => {
+    if (element.includes(substring)) {
+      return element;
+    }
+  });
+  var dec;
+  if (match) {
+    dec = jwt.decode(match.slice(10));
+  }
+
   if (dec) {
     res.status(200).json({
       message: "Auth successful",
     });
-  }
-  else {
+  } else {
     res.status(401).json({
-      message: "Log in please"
+      message: "Log in please",
     });
   }
-}
+};
