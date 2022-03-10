@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>coderszine.com - chat application with Node.js</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        background-color: #181b20;
+      }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-4">
+      <!-- <div class="row">
+      <div class="col-12">
+        <div class="card chatbox" onclick="openchat()">
+          <img
+            src="https://www.google.com/url?sa=i&url=http%3A%2F%2Fclipart-library.com%2Fman-cartoon-picture.html&psig=AOvVaw07YL1XqadqxrfkbXibdNLs&ust=1646925493711000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNCB9NqpufYCFQAAAAAdAAAAABAD"
+            alt="Avatar" style="width:100%">
+          <div class="container">
+            <label id="name2" value="Python">Python</label>
+            <label id="name_flag" value="1">1</label>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+      <div class="row mt-1 g-5">
+        <div class="col-3">
+          <div class="row">
+            <div class="card" style="width: 100%">
+              <h5 class="card-title fw-normal fs-3 pt-1">Collaborators</h5>
+              <div class="card-body" style="height: 540px; overflow-y: auto">
+                <a href="" style="text-decoration: none"
+                  ><p
+                    id="Rishabh"
+                    name="Rishabh"
+                    onclick="openchat(this.id,0)"
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >Rishabh</p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    id="Python"
+                    onclick="openchat(this.id,1)"
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >Python</p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+                <a href="" style="text-decoration: none"
+                  ><p
+                    class="card d-flex align-items-center border-0 border-bottom"
+                  >
+                    Balaji Wadawadagi
+                  </p></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-9">
+          <div class="row">
+            <br />
+            <div class="jumbotron py-1">
+              <h1 class="display-4">Chat Conversation</h1>
+              <br />
+              <div style="height: 480px; overflow-y: auto">
+                <div id="messages"></div>
+                <input
+                  id="channel"
+                  class="form-control"
+                  placeholder="Channel Name..."
+                />
+                <br />
+                <input
+                  id="name"
+                  class="form-control"
+                  placeholder="Sender Name..."
+                />
+                <br />
+                <textarea
+                  id="message"
+                  class="form-control"
+                  placeholder="Message..."
+                ></textarea>
+                <br />
+                <button id="send" class="btn btn-success">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let channelname = "Python";
+      console.log(channelname);
+      // let channelname="Rishabh_Vinisha";
+
+      function openchat(id, flag) {
+        console.log("Hello");
+        var username = "Vinisha";
+        console.log(channelname);
+        // document.getElementById("messages").innerHTML = "";
+        channelname = id;
+        pers = flag;
+        console.log(channelname, pers);
+        if (pers == 0) {
+          var arr = [username, channelname];
+          arr.sort();
+          channelname = arr.join("_");
+          // console.log("jiii")
+          // var data =await axios.post('http://localhost:3000/getmessages', {
+          // });
+          console.log("oo", id);
+          // document.getElementById(id).id=channelname;
+
+          getMessages(channelname);
+          console.log("uuu");
+          // axios.post('http://localhost:3000/getmessages', data).then(function (response) {
+          //   console.log(response);
+          //   for (var i = 0; i < response[0].messages.length; i += 1) {
+          //     addMessages(response[0].messages[i]);
+          //     console.log(i);
+          //   }
+          // }).catch(function (error) {
+          //   console.log(error);
+          // });
+
+          // console.log(data.data)
+
+          // for (var i=0;i<data.data.length;i++){
+          //   if(data.data[i].channelname==channelname){
+          //      for(var j =0;j<data.data[i].messages.length;j++){
+
+          //     console.log(data.data[i].messages[j]);
+          //     addMessages(data.data[i].messages[j]);
+          //   }
+          //   break;
+          //   }
+          // }
+        } else {
+          data = { channel: channelname };
+          axios
+            .post("http://localhost:3000/getmessages", data)
+            .then(function (response) {
+              console.log(response);
+              for (var i = 0; i < response[0].messages.length; i += 1) {
+                // addMessages(response[0].messages[i]);
+                console.log(i, response[0].messages[i]);
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          for (var i = 0; i < data.data.length; i++) {
+            if (data.data[i].channelname == channelname) {
+              for (var j = 0; j < data.data[i].messages.length; j++) {
+                console.log(data.data[i].messages[j]);
+                // addMessages(data.data[i].messages[j]);
+              }
+              break;
+            }
+          }
+        }
+      }
+
+      // var socket= io('http://localhost:3000/');
+      $(() => {
+        $("#send").click(() => {
+          sendMessage({
+            name: $("#name").val(),
+            message: $("#message").val(),
+            channel: $("#channel").val(),
+          });
+              document.getElementById("messages").innerHTML = "";
+
+          getMessages($("#channel").val());
+        });
+
+        getMessages("Java");
+      });
+
+      // socket.on('message', addMessages)
+
+      function addMessages(message) {
+        // console.log(message);
+        // console.log(message.name);
+        // console.log(message.message);
+
+        $("#messages").append(
+          "<div><strong>" +
+            message.name.charAt(0).toUpperCase() +
+            message.name.slice(1) +
+            "</strong> says: <br><span>" +
+            message.message +
+            "</span></div><hr/>"
+        );
+      }
+
+      async function getMessages(channelname) {
+        data = { channel: channelname };
+        console.log(data);
+        await axios
+          .post("http://localhost:3000/getmessages", data)
+          .then(function (response) {
+            console.log(response);
+            console.log("uuuuhh");
+            for (var i = 0; i < response.data[0].messages.length; i += 1) {
+              // console.log(response.data[0]);
+              addMessages(response.data[0].messages[i]);
+              console.log(i);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      async function sendMessage(message) {
+        await axios.post("http://localhost:3000/messages", message);
+        $("#name").val("");
+        $("#message").val("");
+        $("#channel").val("");
+        $("#messages").append(
+          "<div><strong>" +
+            message.name.charAt(0).toUpperCase() +
+            message.name.slice(1) +
+            "</strong> says: <br><span>" +
+            message.message +
+            "</span></div><hr/>"
+        );
+      }
+    </script>
+  </body>
+</html>
