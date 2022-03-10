@@ -185,7 +185,7 @@
           <div class="row">
             <br />
             <div class="jumbotron py-1">
-              <h1 class="display-4">Chat Conversation</h1>
+              <h1 id="channelnamehead" class="display-4">Chat Conversation</h1>
               <br />
               <div style="height: 480px; overflow-y: auto">
                 <div id="messages"></div>
@@ -227,6 +227,7 @@
         channelname = id;
         pers = flag;
         console.log(channelname, pers);
+        document.getElementById("channelnamehead").innerHTML=channelname;
         if (pers == 0) {
           var arr = [username, channelname];
           arr.sort();
@@ -264,7 +265,7 @@
         } else {
           data = { channel: channelname };
           axios
-            .post("http://localhost:3000/getmessages", data)
+            .post("http://localhost:8000/getmessages", data)
             .then(function (response) {
               console.log(response);
               for (var i = 0; i < response[0].messages.length; i += 1) {
@@ -299,7 +300,10 @@
               document.getElementById("messages").innerHTML = "";
 
           getMessages($("#channel").val());
+          document.getElementById("channelnamehead").innerHTML=($("#channel").val());
+
         });
+        document.getElementById("channelnamehead").innerHTML="Java";
 
         getMessages("Java");
       });
@@ -325,7 +329,7 @@
         data = { channel: channelname };
         console.log(data);
         await axios
-          .post("http://localhost:3000/getmessages", data)
+          .post("http://localhost:8000/getmessages", data)
           .then(function (response) {
             console.log(response);
             console.log("uuuuhh");
@@ -341,7 +345,7 @@
       }
 
       async function sendMessage(message) {
-        await axios.post("http://localhost:3000/messages", message);
+        await axios.post("http://localhost:8000/messages", message);
         $("#name").val("");
         $("#message").val("");
         $("#channel").val("");

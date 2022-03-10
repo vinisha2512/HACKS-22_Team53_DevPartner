@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-var chatController = require("../controller/chatController");
+var chatController = require("../Controllers/chatController");
 
 router.post('/messages', chatController.savemsg);
 router.post('/getmessages', chatController.getmsg);

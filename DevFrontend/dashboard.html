@@ -44,7 +44,8 @@
 
                 document.getElementById("username").innerHTML = res.data.username;
                 document.getElementById("userbio").innerHTML = res.data.userbio;
-                
+
+                document.getElementById("userid").value = res.data.userId
 
                 parent = document.getElementById("parentContainer");
                 root = document.getElementById("card-layout");
@@ -53,6 +54,11 @@
                     card_node = root.cloneNode(true);
                     card_node.querySelector("h2").innerHTML = NAMES[i];
                     card_node.querySelector("p").innerHTML = BIOS[i];
+                    card_node.querySelector("input").value=IDS[i];
+
+                    // card_node.querySelector("label").style.display=none;
+
+                    console.log(IDS[i]);
                     parent.appendChild(card_node);
                 }
                 root.remove();
@@ -60,7 +66,45 @@
             .catch((err) => {
                 console.log(err.response);
             });
+
+            axios
+            .get("http://localhost:8000/fetch/fetchProjs", )
+            .then((res) => {
+                console.log("Helloooo")
+                // console.log(res.data.techstacks)
+
+                IDS2 = res.data.ids
+                NAMES2 = res.data.names 
+                DESC2 = res.data.desc
+                TECHS2 =res.data.techstacks
+
+                console.log(IDS2,NAMES2,DESC2)
+                parent = document.getElementById("parentContainer_p");
+                root = document.getElementById("card-layout_p");
+                console.log(parent,root);
+                for(var i = 0; i<IDS2.length; i++){
+                    card_node = root.cloneNode(true);
+                    card_node.querySelector("h2").innerHTML = NAMES2[i];
+                    card_node.querySelector("span").innerHTML = (TECHS2[i]).join(' ');
+
+                    card_node.querySelector("p").innerHTML = DESC2[i];
+                    card_node.querySelector("input").value=IDS2[i];
+                    console.log(card_node,root);
+                    // card_node.querySelector("label").style.display=none;
+
+                    console.log(IDS2[i]);
+                    parent.appendChild(card_node);
+                }
+                root.remove();
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+            
         })
+
+
+        
     </script>
 </head>
 <body>
@@ -83,9 +127,10 @@
                     <p id="userbio">
                         
                     </p>
+                    <label id="userid" style="display:none"></label>
                 </div>
                 <div class="row">
-                    <button class="top-profile">Profile</button>
+                    <button class="top-profile" id="userid"  href="./profile.html">Profile</button>
                 </div>
             </div>
             <div class="col-6">
@@ -176,12 +221,13 @@
                                 <div class="card-body px-2 pt-3">
                                     <div class="card-content mt-5">
                                         <div class="circle">
-                                            <img class="rounded-circle card-image" src="Balaji Wadawadagi.jpeg"
+                                            <img class="rounded-circle card-image" src="userDummy.jpeg"
                                                 style="padding: 0.9rem" alt="" />
                                         </div>
                                         <h2 class="fs-2 fw-bold d-flex mt-5 mb-3 mt-md-4 justify-content-center">
                                             PYTHON
                                         </h2>
+                                        <input type="hidden" val=""></input>
                                         <div class="content">
                                             <p class="profile-card-text">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -189,7 +235,7 @@
                                                 laborum quia
                                             </p>
                                             <div class="two-btns d-flex justify-content-around py-3">
-                                                <button type="button" class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary" >
                                                     View Profile
                                                 </button>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -218,8 +264,10 @@
         <div class="row">
           <div class="col-1"></div>
           <div class="col-10">
-            <div class="row align-items-center py-5 g-4 justify-content-between">
-              <div class="card projectCards" style="cursor: pointer">
+            <div class="row align-items-center py-5 g-5 justify-content-between" id="parentContainer_p">
+                <div class="card projectCards" id="card-layout_p" style="cursor: pointer"
+                                onclick="window.location.href = ''">
+              <!-- <div class="card projectCards" style="cursor: pointer"> -->
                 <div class="card-body px-2 pt-3">
                   <div class="card-content mt-5">
                     <h2
@@ -234,84 +282,8 @@
                         laborum quia
                       </p>
                       <h5 class="mt-3">Tech Stack:</h5>
-                      <span>HTML CSS Javascript</span>
-                      <div class="two-btns d-flex justify-content-around py-3">
-                        <button type="button" class="btn btn-primary">
-                          View Project
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="card projectCards" style="cursor: pointer">
-                <div class="card-body px-2 pt-3">
-                  <div class="card-content mt-5">
-                    <h2
-                      class="fs-2 fw-bold d-flex mt-5 mb-3 mt-md-4 justify-content-center"
-                    >
-                      PYTHON
-                    </h2>
-                    <div class="content">
-                      <p class="profile-card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Fugiat voluptate quod reprehenderit, necessitatibus facere
-                        laborum quia
-                      </p>
-                      <h5 class="mt-3">Tech Stack:</h5>
-                      <span>HTML CSS Javascript</span>
-                      <div class="two-btns d-flex justify-content-around py-3">
-                        <button type="button" class="btn btn-primary">
-                          View Project
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="card projectCards" style="cursor: pointer">
-                <div class="card-body px-2 pt-3">
-                  <div class="card-content mt-5">
-                    <h2
-                      class="fs-2 fw-bold d-flex mt-5 mb-3 mt-md-4 justify-content-center"
-                    >
-                      PYTHON
-                    </h2>
-                    <div class="content">
-                      <p class="profile-card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Fugiat voluptate quod reprehenderit, necessitatibus facere
-                        laborum quia
-                      </p>
-                      <h5 class="mt-3">Tech Stack:</h5>
-                      <span>HTML CSS Javascript</span>
-                      <div class="two-btns d-flex justify-content-around py-3">
-                        <button type="button" class="btn btn-primary">
-                          View Project
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="card projectCards" style="cursor: pointer">
-                <div class="card-body px-2 pt-3">
-                  <div class="card-content mt-5">
-                    <h2
-                      class="fs-2 fw-bold d-flex mt-5 mb-3 mt-md-4 justify-content-center"
-                    >
-                      PYTHON
-                    </h2>
-                    <div class="content">
-                      <p class="profile-card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Fugiat voluptate quod reprehenderit, necessitatibus facere
-                        laborum quia
-                      </p>
-                      <h5 class="mt-3">Tech Stack:</h5>
+                      <input type="hidden" val=""></input>
+
                       <span>HTML CSS Javascript</span>
                       <div class="two-btns d-flex justify-content-around py-3">
                         <button type="button" class="btn btn-primary">
@@ -443,6 +415,10 @@
         }
     }
     
+  </script>
+
+  <script>
+      
   </script>
     
 </body>

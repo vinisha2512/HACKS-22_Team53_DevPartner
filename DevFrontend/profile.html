@@ -9,13 +9,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="./profile.css" />
+
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-        <script>
-          window.addEventListener('load', (event) => {
-getinfo()});
-        </script>
+        
 
 <style>
   .kanban-heading {
@@ -148,7 +146,7 @@ textarea {
       <div class="row">
         <div class="card">
           <div class="profile-img">
-            <img src="WhatsApp Image 2022-03-09 at 12.44.15 PM.jpeg" alt="" />
+            <img src="ttt.jpeg" alt="" />
           </div>
           <div class="dets text-center">
             <h1 id="username">Ruchit Thaker</h1>
@@ -314,7 +312,7 @@ textarea {
   <script>
     // window.onload="getinfo()";
     
-    function getinfo(){
+    async function getinfo(){
       data={userid:"6228b5b82fc3f97a9412f2a1"}
           await axios
           .post("http://localhost:3000/getuserpro", data)
@@ -343,5 +341,9 @@ textarea {
           });
         }
 
+        
+          window.addEventListener('load', (event) => {
+getinfo()});
+      
   </script>
 </html>
